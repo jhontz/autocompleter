@@ -8,6 +8,9 @@ import java.util.Map;
 import java.util.TreeMap;
 
 /**
+ * Provides autocomplete suggestions for word fragments. An instance of this
+ * class can be trained to recognize which words tend to be the most popular,
+ * thus boosting the confidence of these search candidates.
  * 
  * @author Justin Hontz
  */
@@ -24,6 +27,7 @@ public class AutocompleteProvider {
    */
   public List<Candidate> getWords(String fragment) {
     TrieNode baseNode = trieRoot;
+    // Used for descending sort order
     Comparator<Candidate> comparator = (c1, c2) -> {
       return ((Integer) c2.getConfidence()).compareTo(c1.getConfidence());
     };
