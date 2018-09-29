@@ -1,5 +1,7 @@
 package autocomplete;
 
+import java.util.Objects;
+
 /**
  * Represents an autocompletion candidate for a certain word. An instance of
  * this class also maintains a reference to a numerical "confidence" of its
@@ -43,13 +45,23 @@ public class Candidate {
     return confidence;
   }
   
-  /**
-   * Returns a string representation of this instance.
-   * 
-   * @return the string representation
-   */
+  @Override
   public String toString() {
     return "\"" + word + "\" (" + confidence + ")";
+  }
+  
+  @Override
+  public boolean equals(Object other) {
+    if (other == null || !(other instanceof Candidate)) {
+      return false;
+    }
+    Candidate realOther = (Candidate) other;
+    return word.equals(realOther.word) && confidence == realOther.confidence;
+  }
+  
+  @Override
+  public int hashCode() {
+    return Objects.hash(word, confidence);
   }
 
 }

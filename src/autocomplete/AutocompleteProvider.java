@@ -26,6 +26,10 @@ public class AutocompleteProvider {
    * @return the ordered list of candidates
    */
   public List<Candidate> getWords(String fragment) {
+    if (fragment == null) {
+      throw new IllegalArgumentException("fragment can't be null");
+    }
+    
     TrieNode baseNode = trieRoot;
     // Used for descending sort order
     Comparator<Candidate> comparator = (c1, c2) -> {
@@ -60,6 +64,10 @@ public class AutocompleteProvider {
    * @param passage the given string passage
    */
   public void train(String passage) {
+    if (passage == null) {
+      throw new IllegalArgumentException("passage can't be null");
+    }
+    
     // Split upon non-word characters
     String[] words = passage.split("\\W+");
 
