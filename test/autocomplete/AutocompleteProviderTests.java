@@ -6,8 +6,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.Test;
+import static org.junit.Assert.*;
 
 public class AutocompleteProviderTests {
 
@@ -38,7 +38,7 @@ public class AutocompleteProviderTests {
   }
 
   @Test
-  public void testOneTraining() {
+  public void testOneTrainingUpperAndLowerCase() {
     AutocompleteProvider provider = new AutocompleteProvider();
     List<Candidate> expectedList = Arrays.asList(
         new Candidate("that", 2),
@@ -50,7 +50,7 @@ public class AutocompleteProviderTests {
         new Candidate("thoroughly", 1)
     );
     
-    provider.train("The third thing that I need to tell you is that this thing does not think thoroughly");
+    provider.train("The THIRD thing that I nEED to tELL you is thAT this THING does not think tHoRouGHly");
     assertTrue(areTopCandidatesListsEqual(expectedList, provider.getWords("th")));
   }
   
